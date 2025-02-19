@@ -1,7 +1,7 @@
 [project]
-name = "cd_agents_project"
+name = "cd_agents_research"
 version = "0.1.0"
-description = "cd_agents_project using crewAI"
+description = "cd_agents_research using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.13"
 dependencies = [
@@ -9,11 +9,11 @@ dependencies = [
 ]
 
 [project.scripts]
-cd_agents_project = "cd_agents_project.main:run"
-run_crew = "cd_agents_project.main:run"
-train = "cd_agents_project.main:train"
-replay = "cd_agents_project.main:replay"
-test = "cd_agents_project.main:test"
+cd_agents_research = "cd_agents_research.main:run"
+run_crew = "cd_agents_research.main:run"
+train = "cd_agents_research.main:train"
+replay = "cd_agents_research.main:replay"
+test = "cd_agents_research.main:test"
 
 [build-system]
 requires = ["hatchling"]

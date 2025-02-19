@@ -4,7 +4,7 @@ import warnings
 
 from datetime import datetime
 
-from cd_agents_project.crew import CdAgentsProject
+from cd_agents_research.crew import CdAgentsResearch
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -23,7 +23,7 @@ def run():
     }
     
     try:
-        CdAgentsProject().crew().kickoff(inputs=inputs)
+        CdAgentsResearch().crew().kickoff(inputs=inputs)
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -36,7 +36,7 @@ def train():
         "topic": "AI LLMs"
     }
     try:
-        CdAgentsProject().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        CdAgentsResearch().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while training the crew: {e}")
@@ -46,7 +46,7 @@ def replay():
     Replay the crew execution from a specific task.
     """
     try:
-        CdAgentsProject().crew().replay(task_id=sys.argv[1])
+        CdAgentsResearch().crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -59,7 +59,7 @@ def test():
         "topic": "AI LLMs"
     }
     try:
-        CdAgentsProject().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+        CdAgentsResearch().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while testing the crew: {e}")

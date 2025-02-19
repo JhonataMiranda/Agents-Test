@@ -6,8 +6,8 @@ from crewai.project import CrewBase, agent, crew, task
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
 @CrewBase
-class CdAgentsProject():
-	"""CdAgentsProject crew"""
+class CdAgentsResearch():
+	"""CdAgentsResearch crew"""
 
 	# Learn more about YAML configuration files here:
 	# Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -49,7 +49,7 @@ class CdAgentsProject():
 
 	@crew
 	def crew(self) -> Crew:
-		"""Creates the CdAgentsProject crew"""
+		"""Creates the CdAgentsResearch crew"""
 		# To learn how to add knowledge sources to your crew, check out the documentation:
 		# https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
