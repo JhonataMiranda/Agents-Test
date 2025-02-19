@@ -20,12 +20,7 @@ crewai install
 ```
 ### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/cd_agents_research/config/agents.yaml` to define your agents
-- Modify `src/cd_agents_research/config/tasks.yaml` to define your tasks
-- Modify `src/cd_agents_research/crew.py` to add your own logic, tools and specific args
-- Modify `src/cd_agents_research/main.py` to add custom inputs for your agents and tasks
+**Add your `OPENAI_API_KEY` and `MODEL` settings into the `.env` file**
 
 ## Running the Project
 
@@ -43,12 +38,3 @@ This example, unmodified, will run the create a `report.md` file with the output
 
 The cd_agents_research Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
 
-## Support
-
-For support, questions, or feedback regarding the CdAgentsResearch Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
