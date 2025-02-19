@@ -4,12 +4,12 @@ Welcome to the CdAgentsResearch Crew project, powered by [crewAI](https://crewai
 
 ## Installation
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [crewAI](https://crewai.com).
 
-First, if you haven't already, install uv:
+First, if you haven't already, install crew ai:
 
 ```bash
-pip install uv
+pip install crewai crewai-tools
 ```
 
 Next, navigate to your project directory and install the dependencies:
