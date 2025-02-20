@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import  SerperDevTool, ScrapeWebsiteTool
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -21,14 +22,24 @@ class CdAgentsResearch():
 	def researcher(self) -> Agent:
 		return Agent(
 			config=self.agents_config['researcher'],
-			verbose=True
+			verbose=True,
+			tools=[SerperDevTool(), ScrapeWebsiteTool()]
 		)
 
 	@agent
-	def reporting_analyst(self) -> Agent:
+	def analyst(self) -> Agent:
 		return Agent(
-			config=self.agents_config['reporting_analyst'],
-			verbose=True
+			config=self.agents_config['analyst'],
+			verbose=True,
+			tools=[SerperDevTool(), ScrapeWebsiteTool()]
+		)
+	
+	@agent
+	def summarizer(self) -> Agent:
+		return Agent(
+			config=self.agents_config['summarizer'],
+			verbose=True,
+			tools=[SerperDevTool(), ScrapeWebsiteTool()]
 		)
 
 	# To learn more about structured task outputs, 
@@ -43,7 +54,13 @@ class CdAgentsResearch():
 	@task
 	def reporting_task(self) -> Task:
 		return Task(
-			config=self.tasks_config['reporting_task'],
+			config=self.tasks_config['reporting_task']
+		)
+	
+	@task
+	def writing_task(self) -> Task:
+		return Task(
+			config=self.tasks_config['writing_task'],
 			output_file='report.md'
 		)
 
