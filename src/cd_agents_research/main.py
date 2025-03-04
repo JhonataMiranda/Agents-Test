@@ -23,9 +23,15 @@ def run():
     try:
         crew = CdAgentsResearch().crew()
         results = crew.kickoff_for_each(inputs=inputs_array)
-        for result in results:
-            print(f"Raw Output: {result.raw}")
-            ## add this in a md file
+
+        for i, result in enumerate(results):
+            disease_name = inputs_array[i]['topic'].replace(" ", "_").replace("(", "").replace(")", "").replace("/", "_")
+            file_name = f"report_{disease_name}.md"
+
+            with open(file_name, "w", encoding="utf-8") as f:
+                f.write(result.raw)
+
+            print(f"Report saved: {file_name}")
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
