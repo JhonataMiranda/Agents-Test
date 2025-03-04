@@ -17,12 +17,15 @@ def run():
     """
     Run the crew.
     """
-    inputs = {
-        'topic': 'Common Cold'
-    }
+    inputs_array = [{'topic': 'Common Cold'}, {'topic': 'Influenza (Flu)'}, {'topic': 'Lyme Disease'}, 
+                    {'topic': 'Hay Fever (Allergic Rhinitis) '}, {'topic': 'Urinary Tract Infections (UTIs) '}]
     
     try:
-        CdAgentsResearch().crew().kickoff(inputs=inputs)
+        crew = CdAgentsResearch().crew()
+        results = crew.kickoff_for_each(inputs=inputs_array)
+        for result in results:
+            print(f"Raw Output: {result.raw}")
+            ## add this in a md file
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
