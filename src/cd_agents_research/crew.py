@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 import datetime
 
 @CrewBase
@@ -13,6 +14,7 @@ class CdAgentsResearch():
     def researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['researcher'],
+            tools = [SerperDevTool(), ScrapeWebsiteTool()],
             verbose=True
         )
 
@@ -20,6 +22,7 @@ class CdAgentsResearch():
     def analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['analyst'],
+            tools = [SerperDevTool(), ScrapeWebsiteTool()],
             verbose=True
         )
     
@@ -44,8 +47,6 @@ class CdAgentsResearch():
     
     @task
     def writing_task(self) -> Task:
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file = f"report_{timestamp}.md"
         return Task(
             config=self.tasks_config['writing_task']
         )

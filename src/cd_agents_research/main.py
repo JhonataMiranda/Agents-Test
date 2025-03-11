@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 import sys
+import os
 import warnings
-
-from datetime import datetime
-
+import datetime
 from cd_agents_research.crew import CdAgentsResearch
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -18,20 +17,27 @@ def run():
     Run the crew.
     """
     inputs_array = [{'topic': 'Common Cold'}, {'topic': 'Influenza (Flu)'}, {'topic': 'Lyme Disease'}, 
-                    {'topic': 'Hay Fever (Allergic Rhinitis) '}, {'topic': 'Urinary Tract Infections (UTIs) '}]
+                    {'topic': 'Hay Fever (Allergic Rhinitis)'}, {'topic': 'Urinary Tract Infections (UTIs)'}]
     
     try:
         crew = CdAgentsResearch().crew()
         results = crew.kickoff_for_each(inputs=inputs_array)
+        
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        reports_dir = f"reports_{timestamp}"
+        os.makedirs(reports_dir, exist_ok=True)
 
         for i, result in enumerate(results):
             disease_name = inputs_array[i]['topic'].replace(" ", "_").replace("(", "").replace(")", "").replace("/", "_")
             file_name = f"report_{disease_name}.md"
+            file_path = os.path.join(reports_dir, file_name)
 
-            with open(file_name, "w", encoding="utf-8") as f:
+            with open(file_path, "w", encoding="utf-8") as f:
                 f.write(result.raw)
 
-            print(f"Report saved: {file_name}")
+            print(f"Report saved in: {file_path}")
+            print(f"Content of {file_name}:\n{result.raw}")
+            
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
