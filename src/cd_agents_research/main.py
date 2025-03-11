@@ -22,7 +22,7 @@ def run():
     try:
         crew = CdAgentsResearch().crew()
         results = crew.kickoff_for_each(inputs=inputs_array)
-        
+        print(crew.usage_metrics)
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         reports_dir = f"reports_{timestamp}"
         os.makedirs(reports_dir, exist_ok=True)
@@ -36,7 +36,6 @@ def run():
                 f.write(result.raw)
 
             print(f"Report saved in: {file_path}")
-            print(f"Content of {file_name}:\n{result.raw}")
             
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
