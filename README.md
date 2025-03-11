@@ -20,7 +20,7 @@ crewai install
 ```
 ### Customizing
 
-**Add your `OPENAI_API_KEY` and `MODEL` settings into the `.env` file (create this file in the Agents-Test directory after clone this repository)**
+**Add your `OPENAI_API_KEY`, `SERPER_API_KEY` and `MODEL` settings into the `.env` file (create this file in the Agents-Test directory after clone this repository)**
 
 ## Running the Project
 
