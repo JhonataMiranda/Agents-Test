@@ -4,6 +4,8 @@ import os
 import warnings
 import datetime
 from cd_agents_research.crew import CdAgentsResearch
+import mlflow
+
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -20,6 +22,13 @@ def run():
                     {'topic': 'Hay Fever (Allergic Rhinitis)'}, {'topic': 'Urinary Tract Infections (UTIs)'}]
     
     try:
+
+        mlflow.crewai.autolog()
+
+        # Optional: Set a tracking URI and an experiment name if you have a tracking server
+        mlflow.set_tracking_uri("http://localhost:5000")
+        mlflow.set_experiment("CrewAI")
+        
         crew = CdAgentsResearch().crew()
         results = crew.kickoff_for_each(inputs=inputs_array)
         print(crew.usage_metrics)
