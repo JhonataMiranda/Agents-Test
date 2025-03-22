@@ -5,6 +5,7 @@ import warnings
 import datetime
 from cd_agents_research.crew import CdAgentsResearch
 import mlflow
+import asyncio
 
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
@@ -18,19 +19,32 @@ def run():
     """
     Run the crew.
     """
-    inputs_array = [{'topic': 'Common Cold'}, {'topic': 'Influenza (Flu)'}, {'topic': 'Lyme Disease'}, 
-                    {'topic': 'Hay Fever (Allergic Rhinitis)'}, {'topic': 'Urinary Tract Infections (UTIs)'}]
+    # inputs_array = [{'topic': 'Common Cold'}, {'topic': 'Influenza (Flu)'}, {'topic': 'Lyme Disease'}, 
+    #                 {'topic': 'Hay Fever (Allergic Rhinitis)'}, {'topic': 'Urinary Tract Infections (UTIs)'}]
+
+    inputs_array = [{'topic': 'Common Cold'}]
     
     try:
-
         mlflow.crewai.autolog()
-
-        # Optional: Set a tracking URI and an experiment name if you have a tracking server
         mlflow.set_tracking_uri("http://localhost:5000")
         mlflow.set_experiment("CrewAI")
         
         crew = CdAgentsResearch().crew()
-        results = crew.kickoff_for_each(inputs=inputs_array)
+
+        while True:
+            choice = input("Do you want to run synchronously or asynchronously (type 'sync' or 'async'): ").strip().lower()
+
+            if choice in ["sync", "async"]:
+                execution_mode = choice
+                break
+            else:
+                print("Invalid choice! Please type 'sync' or 'async'.")
+
+        if execution_mode == "sync":
+            results = crew.kickoff_for_each(inputs=inputs_array)
+        else:
+            results = asyncio.run(crew.kickoff_for_each_async(inputs=inputs_array))
+
         print(crew.usage_metrics)
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         reports_dir = f"reports_{timestamp}"
@@ -38,7 +52,7 @@ def run():
 
         for i, result in enumerate(results):
             disease_name = inputs_array[i]['topic'].replace(" ", "_").replace("(", "").replace(")", "").replace("/", "_")
-            file_name = f"report_{disease_name}.md"
+            file_name = f"report_{execution_mode}_{disease_name}.md"
             file_path = os.path.join(reports_dir, file_name)
 
             with open(file_path, "w", encoding="utf-8") as f:
