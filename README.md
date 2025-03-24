@@ -38,3 +38,11 @@ This example, unmodified, will run the create a `report.md` file with the output
 
 The cd_agents_research Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
 
+## Opening the MLFlow
+To open the mlflow (`pip install mlflow`) of this project, make sure you are in the root folder of the project and type the following command:
+
+```bash
+$ mlflow server
+```
+
+Selecting the CrewAI tab in the left side, you can open the `Traces` of this project and view each run of this project.
