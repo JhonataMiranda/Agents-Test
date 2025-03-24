@@ -24,6 +24,8 @@ crewai install
 
 ## Running the Project
 
+In the src/main.py file, define which themes will be generated in the inputs_array vector.
+
 To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
 
 ```bash
@@ -32,7 +34,9 @@ $ crewai run
 
 This command initializes the cd_agents_research Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+You will be asked during execution whether you want to generate the report(s) synchronously or asynchronously.
+
+The final reports will be created in a folder with a time stamp.
 
 ## Understanding Your Crew
 
